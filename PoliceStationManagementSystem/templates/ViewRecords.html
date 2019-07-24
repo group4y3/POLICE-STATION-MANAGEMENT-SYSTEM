@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+     <!-- Contact Section -->
+  <section class="page-section" id="contact">
+    <div class="container">
+
+      <!-- Contact Section Heading -->
+      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Crime Records</h2>
+
+      <!-- Icon Divider -->
+      <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="divider-custom-line"></div>
+      </div>
+
+     <section>
+  <form action="{% url 'search_results' %}" method="get">
+    <input name="q" type="text" placeholder="Search" />
+
+    <button style="color:white; background-color:#348057;" type="submit">
+      <i class="fa fa-search"></i>
+    </button>
+  </form>
+  <ul class="tags"></ul>
+
+
+
+      <table class="table table-bordered">
+    <thead>
+      <tr>
+           <th>CriminaPhoto</th>
+            <th>CriminalID</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Age</th>
+        <th>Sex</th>
+        <th>Address</th>
+           <th>Height</th>
+           <th>EyeColor</th>
+           <th>Crime</th>
+           <th>PoliceStation</th>
+          <th>Update</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+     {% for result in s_result %}
+    <tr>
+     <td style="width: 20px"><img src="{{ result.CriminalPhoto.url}}" style="height: 70px;width: 100px"></td>
+          <td>{{ result.CriminalID }}</td>
+          <td>{{ result.FirstName }}</td>
+          <td>{{ result.LastName }}</td>
+          <td> {{ result.Age }} </td>
+          <td> {{ result.Sex }} </td>
+          <td> {{ result.Address }} </td>
+          <td> {{ result.Height }} </td>
+          <td> {{ result.EyeColor }} </td>
+          <td> {{ result.Crime }} </td>
+          <td> {{ result.PoliceStation }} </td>
+        <td>
+  <a href="http://{{ domain }}/user/update/{{ result.CriminalID }}/">
+    <div style="height:10px;width:60px">
+     Update
+    </div>
+  </a>
+</td>
+        </tr>
+       {% endfor %}
+    </tbody>
+  </table>
+
+
+
+</section>
+
+    </div>
+  </section>
+{% endblock %}

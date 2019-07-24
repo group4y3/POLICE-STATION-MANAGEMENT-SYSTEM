@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="container">
+        {% if user.is_authenticated %}
+         <meta http-equiv="refresh" content="0; url=http://127.0.0.1:8000/home/" />
+        {% endif %}
+
+     <section class="copyright py-4 text-center text-white">
+    <div class="container">
+      <h2><Strong>LOGIN NOW</Strong></h2>
+    </div>
+  </section>
+
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        {% if error_message %}
+                            <p class="bg-danger p-d ml-b">{{ error_message }}</p>
+                        {% endif %}
+                             <br>
+                             <br>
+
+                        <div class="form-group clearfix">
+                            <label for="username" class="col-md-4 control-label text-right">Username:</label>
+                            <div class="col-md-6">
+                                <input name="username" value="" type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="password" class="col-md-4 control-label text-right">Password:</label>
+                            <div class="col-md-6">
+                                <input name="password" type="password" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-md-offset-4">
+                            <input name="login" type="submit" value="Login" class="btn btn-success" /> &nbsp;
+                            <a href="/signup">or Register</a>
+                            <br>
+                             <br>
+                             <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
